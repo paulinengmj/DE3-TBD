@@ -1,0 +1,1 @@
+Programming the Franka Emika robotic arm to draw several still images of a butterfly with light to produce a stop motion animation.

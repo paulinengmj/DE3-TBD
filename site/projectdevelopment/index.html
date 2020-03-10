@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Project Development - DE3- TBD</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Project Development";
+    var mkdocs_page_input_path = "projectdevelopment.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> DE3- TBD</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../intro/">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../projectproposal/">Project Proposal</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Project Development</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#method-overview">Method Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-animation-sequencing">1. Animation Sequencing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-coordinate-generation">2. Coordinate Generation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-motion-planning">3. Motion Planning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-simulation">4. Simulation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-implementation">5. Implementation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-image-capture">6. Image Capture</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#animation-creation">Animation Creation</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../evaluation.md">Evaluation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../about.md">About</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">DE3- TBD</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Project Development</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="project-development">Project Development</h2>
+<p>HELLO ! This section of the documentation consists of the development from animation creation to image capturing</p>
+<h4 id="method-overview">Method Overview</h4>
+<hr />
+<p>This project was implemented and segmented into 6 main steps</p>
+<p><img alt="" src="../methods.png" /></p>
+<h6 id="1-animation-sequencing">1. Animation Sequencing</h6>
+<p>The model sequence of the butterfly in flight was generated using Rhinoceros3D and the Grasshopper plugin, iteratvely altering a low-poly mesh to give the effect of a butterfly flapping its wings. </p>
+<h6 id="2-coordinate-generation">2. Coordinate Generation</h6>
+<p>The frame sequence was then treated as individual frames, with the coordinates of each one being extracted and processed to eliminate duplicae points. The coordinates were organised to prevent duplicate paths.</p>
+<h6 id="3-motion-planning">3. Motion Planning</h6>
+<p>A motion plan was then generated for each frame using the coordinate list created in the previous step. Code to iterate over the list of frames and plan each motion was developed. This was simulated using RViz and Gazebo.</p>
+<h6 id="4-simulation">4. Simulation</h6>
+<p>Once simulated successfully, the code was implemented using Franka Emika’s Panda robotic arm. </p>
+<h6 id="5-implementation">5. Implementation</h6>
+<p>An end-effector attachment containing a controllable LED was simultaneously developed and manufactured to facilitate light painting</p>
+<h6 id="6-image-capture">6. Image Capture</h6>
+<p>Once the code successfully ran repeatedly on the Panda robot, long-exposure photgraphs were captured of the motion. These photographs were then collated and displayed in sequence to create an animation of a butterfly in flight.</p>
+<h4 id="animation-creation">Animation Creation</h4>
+<hr />
+<p>The butterfly model was simplified to a low-poly model since it was expected that a large number of frames would be needed to form a smooth animation. I was also intended that the focus was on the animation itself and not on the model. As the project was limited in terms of time with the robot, a simplified outline presented the most opportunity to iterate and increase robotic complexity. I.e. A low fidelity model reduces the amount of time necessary for the robot to complete each frame. </p>
+<p>Using slow-motion footage of butterflies in flight, one model for each frame of the animation was created in <a href="https://www.rhino3d.com/">Rhinoceros 3D</a>.  The animation was simplified to 11 frames. The angles of the butterfly wings about the x-axis and the z-axis are approximately sinusoidal. A subtle body wiggle was also added, which is a small, random rotation of the two body triangles about the y-axis. (Angles in reference to Figure B axes).</p>
+<p><strong><em>NOTE:</em></strong> Grasshopper is a plugin included in Rhino 6, which has built-in functions called “components” to allow for easy data manipulation. </p>
+<p>These are the steps which can be repeated to output the same result for each frame in Grasshopper:</p>
+<ol>
+<li>Each of the 4 triangles which form a butterfly were deconstructed into their vertices, faces, colours and normals using the “deconstruct mesh” components. This outputs as a list of lists; a list of 4 triangles and each triangle having 3 vertices, where each vertex is an xyz coordinate. </li>
+<li>The repeated centre vertices were removed by putting the lists through the “create set” component. </li>
+<li>Each sublist was extracted using a “list item” components.</li>
+<li>
+<p>Reorder the list in such a way that the robot can move from coordinate to coordinate without retracing the same path twice. 
+<strong><em>NOTE:</em></strong> This is important in order to avoid any brighter spots in the animation frames which would be seen as an anomaly.</p>
+</li>
+<li>
+<p>The result is a list of coordinates in curly brackets.</p>
+</li>
+</ol>
+<p>Simple data manipulation was then carried out in a text editor to put this in the required python form which uses square brackets (replace function in Wordpad, replacing “{“ and “}” for “[“ and “]” respectively.</p>
+<p>This method allows for the flexibility of changing the butterfly animation frame by frame without the need to manually change each coordinate. This would also allow for more complexity to be added easily on the butterfly models (ie. higher poly models), at the cost of a longer per-frame drawing time. The Grasshopper definition shown in Figure C is robust enough to deal with having curved lines, and would output these as a higher number of interpolated points to form the curves. Given more time with the robot, this change could be implemented. </p>
+<h2 id="motion-planning">Motion Planning</h2>
+<hr />
+<p>Harvey</p>
+<h2 id="simulation">Simulation</h2>
+<hr />
+<p>Luke (Rviz)</p>
+<h2 id="implementation-on-panda">Implementation on Panda</h2>
+<hr />
+<h6 id="setting-up-franka-emika">Setting Up Franka Emika</h6>
+<p>First, release the brakes by making sure the external activation device (EAD) is pressed down. Then, in the controller web interface, click to open brakes. A clicking sound will be heard indicating the EAD button needs to be released. After releasing the EAD button, the LED light will turn white, ready to be used. </p>
+<h6 id="controlling-franka-ros">Controlling Franka &amp; ROS</h6>
+<p>With libfranka and franka_ros installed in the real-time Linux kernel, the following steps were carried out before launching the pre-programmed code. </p>
+<ol>
+<li>Open terminal and type <code>cd franka_ws</code></li>
+<li>Then, type <code>source /devel/setup.bash</code></li>
+<li>Split the terminal into 5 terminals.</li>
+</ol>
+<p>In the following order, type in these commands in the respective terminals. </p>
+<pre><code>• Terminal 1: roscore
+• Terminal 2: roslaunch franka_control franka_control.launch 
+              robot_ip:=192.168.0.88 load_gripper:=true
+• Terminal 3: roslaunch panda_moveit_config panda_moveit.
+              launchcontroller:=position
+• Terminal 4: roslaunch panda_moveit_config moveit_rviz.launch 
+• Terminal 5: python ‘NAMEOFCODE’.py
+</code></pre>
+<p><strong><em>NOTE:</em></strong> to change the ‘NAMEOFCODE’ as the name of python file to be executed.</p>
+<h4 id="grass">grass</h4>
+<h2 id="image-capture">Image Capture</h2>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../projectproposal/" class="btn btn-neutral" title="Project Proposal"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../projectproposal/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
