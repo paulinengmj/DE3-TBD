@@ -67,9 +67,13 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Simulation</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#motion-planning-simulation">Motion Planning Simulation</a>
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-rviz-and-gazebo-for-panda-simulation">Setting up RViz and Gazebo for Panda Simulation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#motion-planning-simulation">Motion Planning Simulation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#light-painting-simulation">Light Painting Simulation</a>
+    <li class="toctree-l3"><a class="reference internal" href="#light-painting-simulation">Light Painting Simulation</a>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -128,6 +132,49 @@
               
                 <h4 id="simulation">Simulation</h4>
 <hr />
+<h5 id="setting-up-rviz-and-gazebo-for-panda-simulation">Setting up RViz and Gazebo for Panda Simulation</h5>
+<p>Save the python file to be simulated in the VM folder <code>catkin_ws/src/franka_gazebo/scripts</code></p>
+<p>Start roscore
+Open a new terminal and type <code>$ roscore</code> </p>
+<p>Start Gazebo
+Open a new terminal and type
+<code>$ cd catkin_ws</code></p>
+<p><code>$ source level/setup.bash</code></p>
+<p><code>$ rosin gazebo_ros gazebo</code></p>
+<p>Add Panda
+Open a new terminal and type
+<code>$ cd catkin_ws</code></p>
+<p><code>$ source level/setup.bash</code></p>
+<p><code>$ roslaunch franka_gazebo panda_arm_hand.launch</code></p>
+<p>You should now see Panda in the Gazebo emulation pointing upwards.</p>
+<p>Start MoveIt!
+Open a new terminal and type
+<code>$ cd catkin_ws</code></p>
+<p><code>$ source devel/setup.bash</code></p>
+<p><code>$ roslaunch panda_moveit_config demo.launch rviz_tutorial:=true</code></p>
+<p>RViz will start
+Add motion planning
+Make sure the Planning Scene Topic is set to /planning_scene
+In Planning Request, change the Planning Group to panda_arm
+You should see Panda in RViz in the same pose as Gazebo</p>
+<p>Start the node connecting MoveIt! to Gazebo
+Open a new terminal
+<code>$ cd catkin_ws</code></p>
+<p><code>$ cd src/panda_publisher</code></p>
+<p><code>$ python panda_publisher.py</code></p>
+<p>Updating the Gazebo simulation gains
+Open a new terminal
+<code>$ cd catkin_ws</code></p>
+<p><code>$ cd src/franka_gazebo/config</code></p>
+<p><code>$ edit default.yaml</code></p>
+<p>Edit the file to match this
+[image of the yams file]
+Save and close the file</p>
+<p>Controlling Panda
+Open a new terminal
+<code>$ cd catkin_ws</code></p>
+<p><code>$ cd src/franka_gazebo/scripts</code></p>
+<p><code>$ python ‘YOUR FILE NAME’.py</code></p>
 <h6 id="motion-planning-simulation">Motion Planning Simulation</h6>
 <p>Before real-life implementation of the code on the Panda robot, the entire task was tested using RViz and Gazebo simulations. This allowed for all poses and time functions to be tested without the risk of damaging the actual robot. It also made it easier to collaborate on and iteratively improve the code as it was not necessary for each team member to individually access the physical robot. The Panda model was loaded, spawned and placed into the Gazebo environment, then controlled with the Python code written by the group members.</p>
 <h6 id="light-painting-simulation">Light Painting Simulation</h6>
