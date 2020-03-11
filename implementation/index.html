@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Team - DE3-TBD</title>
+  <title>Implementation - DE3-TBD</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Team";
-    var mkdocs_page_input_path = "about.md";
+    var mkdocs_page_name = "Implementation";
+    var mkdocs_page_input_path = "implementation.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -58,7 +58,7 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Guide</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../methodoverview/">Method Overview</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../animationcreation/">Animation Creation</a>
@@ -69,7 +69,13 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../lightsource/">Light Source</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../implementation/">Implementation</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Implementation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#setting-up-franka-emika">Setting Up Franka Emika</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#controlling-franka-ros">Controlling Franka &amp; ROS</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../Image/">Image Capture</a>
                     </li>
@@ -80,10 +86,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">About</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Team</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">Team</a>
                     </li>
                 </ul>
       </div>
@@ -107,11 +111,11 @@
     
       
         
-          <li>About &raquo;</li>
+          <li>Project Guide &raquo;</li>
         
       
     
-    <li>Team</li>
+    <li>Implementation</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -122,31 +126,27 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="team">Team</h2>
-<ul>
-<li>Harvey Upton</li>
-</ul>
-<p>Co-wrote code to generate motion plan based on supplied coordinate sets, implemented code on Panda robot, compiled images into animatioon &amp; video editing.</p>
-<ul>
-<li>Tomáš Kňaze</li>
-</ul>
-<p>Co-wrote code to generate motion plan based on supplied coordinate sets, implemented code on Panda robot</p>
-<ul>
-<li>David Prior Hope</li>
-</ul>
-<p>Image capturing of images with long exposure photography, researched intor implementing error detection.</p>
-<ul>
-<li>Pauline Ng</li>
-</ul>
-<p>Design, manufacture and assemble controllable light painting module and docking mechanism.</p>
-<ul>
-<li>Luke Hillery</li>
-</ul>
-<p>Generate simulation of motion planning in Gazebo and Rviz software, including light painting simulation for testing, assisted with animation generaion sequence.</p>
-<ul>
-<li>Higor Alves De Freitas</li>
-</ul>
-<p>Generated and processed coordinates for each frame of animation sequence by creating grasshoper definition to produce coordinate sets from any configuration of the butterfly mesh, processed coordinate data.</p>
+                <h4 id="implementation-on-panda">Implementation on Panda</h4>
+<hr />
+<h6 id="setting-up-franka-emika">Setting Up Franka Emika</h6>
+<p>First, release the brakes by making sure the external activation device (EAD) is pressed down. Then, in the controller web interface, click to open brakes. A clicking sound will be heard indicating the EAD button needs to be released. After releasing the EAD button, the LED light will turn white, ready to be used. </p>
+<h6 id="controlling-franka-ros">Controlling Franka &amp; ROS</h6>
+<p>With libfranka and franka_ros installed in the real-time Linux kernel, the following steps were carried out before launching the pre-programmed code. </p>
+<ol>
+<li>Open terminal and type <code>cd franka_ws</code></li>
+<li>Then, type <code>source /devel/setup.bash</code></li>
+<li>Split the terminal into 5 terminals.</li>
+</ol>
+<p>In the following order, type in these commands in the respective terminals. </p>
+<pre><code>• Terminal 1: roscore
+• Terminal 2: roslaunch franka_control franka_control.launch 
+              robot_ip:=192.168.0.88 load_gripper:=true
+• Terminal 3: roslaunch panda_moveit_config panda_moveit.
+              launchcontroller:=position
+• Terminal 4: roslaunch panda_moveit_config moveit_rviz.launch 
+• Terminal 5: python ‘NAMEOFCODE’.py
+</code></pre>
+<p><strong><em>NOTE:</em></strong> to change the ‘NAMEOFCODE’ as the name of python file to be executed.</p>
               
             </div>
           </div>
@@ -154,8 +154,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../Image/" class="btn btn-neutral float-right" title="Image Capture">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../evaluation/" class="btn btn-neutral" title="Evaluation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../lightsource/" class="btn btn-neutral" title="Light Source"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -181,8 +183,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../evaluation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../lightsource/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../Image/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

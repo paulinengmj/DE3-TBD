@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Team - DE3-TBD</title>
+  <title>Light Source - DE3-TBD</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Team";
-    var mkdocs_page_input_path = "about.md";
+    var mkdocs_page_name = "Light Source";
+    var mkdocs_page_input_path = "lightsource.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -58,7 +58,7 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Guide</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../methodoverview/">Method Overview</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../animationcreation/">Animation Creation</a>
@@ -67,7 +67,13 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../simulation/">Simulation</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../lightsource/">Light Source</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Light Source</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#attachment">Attachment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#circuitry">Circuitry</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../implementation/">Implementation</a>
                     </li>
@@ -80,10 +86,8 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">About</span></p>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Team</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">Team</a>
                     </li>
                 </ul>
       </div>
@@ -107,11 +111,11 @@
     
       
         
-          <li>About &raquo;</li>
+          <li>Project Guide &raquo;</li>
         
       
     
-    <li>Team</li>
+    <li>Light Source</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -122,31 +126,15 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="team">Team</h2>
-<ul>
-<li>Harvey Upton</li>
-</ul>
-<p>Co-wrote code to generate motion plan based on supplied coordinate sets, implemented code on Panda robot, compiled images into animatioon &amp; video editing.</p>
-<ul>
-<li>Tomáš Kňaze</li>
-</ul>
-<p>Co-wrote code to generate motion plan based on supplied coordinate sets, implemented code on Panda robot</p>
-<ul>
-<li>David Prior Hope</li>
-</ul>
-<p>Image capturing of images with long exposure photography, researched intor implementing error detection.</p>
-<ul>
-<li>Pauline Ng</li>
-</ul>
-<p>Design, manufacture and assemble controllable light painting module and docking mechanism.</p>
-<ul>
-<li>Luke Hillery</li>
-</ul>
-<p>Generate simulation of motion planning in Gazebo and Rviz software, including light painting simulation for testing, assisted with animation generaion sequence.</p>
-<ul>
-<li>Higor Alves De Freitas</li>
-</ul>
-<p>Generated and processed coordinates for each frame of animation sequence by creating grasshoper definition to produce coordinate sets from any configuration of the butterfly mesh, processed coordinate data.</p>
+                <h4 id="light-source">Light Source</h4>
+<hr />
+<p>A custom light torch was designed and manufactured to comply towards the dimensions of the Franka Emika end effector gripper. The STL file of the light stick can be found <a href="https://imperialcollegelondon.box.com/s/up7vvrtcb66sjumbtdnhm723nokyev2g">here</a> and be FDM printed on 0.2mm layer height at 30% infill. </p>
+<p>The light unit was designed as a hexagonal shape to be held securely on the end effector with a cone tip to direct the light source towards the centre of the unit.</p>
+<p>A second iteration was made to allow for the unit to be picked up automatically along with a single pole single throw (SPST) switch attached for the light source to stay on when the end effector gripper is closed.</p>
+<h6 id="attachment">Attachment</h6>
+<p>To add in the motion of the light stick being picked up, a magnetic strip was designed to be permanently attached on one end of the end effector. Magnets of the opposite polarity were attached on the main light unite to ensure it remains attached on the end effector when the gripper is opened.</p>
+<h6 id="circuitry">Circuitry</h6>
+<p>The internal circuitry of the light unit consists of two 1.5V AA Batteries, connected to a SPST switch and an LED. This would ensure that when the end effector gripper is closed, the light is turned on and vice versa when the gripper is open. This would also remove unwanted bright spots and allow for the possibility of continuous images within the same frame.</p>
               
             </div>
           </div>
@@ -154,8 +142,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../implementation/" class="btn btn-neutral float-right" title="Implementation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../evaluation/" class="btn btn-neutral" title="Evaluation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../simulation/" class="btn btn-neutral" title="Simulation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -181,8 +171,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../evaluation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../simulation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../implementation/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
