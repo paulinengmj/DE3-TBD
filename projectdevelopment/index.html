@@ -76,6 +76,26 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#animation-creation">Animation Creation</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#motion-planning">Motion Planning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#simulation">Simulation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-on-panda">Implementation on Panda</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#light-source">Light Source</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#attachment">Attachment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#circuitry">Circuitry</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#setting-up-franka-emika">Setting Up Franka Emika</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#controlling-franka-ros">Controlling Franka &amp; ROS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#grass">grass</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -157,14 +177,23 @@
 </ol>
 <p>Simple data manipulation was then carried out in a text editor to put this in the required python form which uses square brackets (replace function in Wordpad, replacing “{“ and “}” for “[“ and “]” respectively.</p>
 <p>This method allows for the flexibility of changing the butterfly animation frame by frame without the need to manually change each coordinate. This would also allow for more complexity to be added easily on the butterfly models (ie. higher poly models), at the cost of a longer per-frame drawing time. The Grasshopper definition shown in Figure C is robust enough to deal with having curved lines, and would output these as a higher number of interpolated points to form the curves. Given more time with the robot, this change could be implemented. </p>
-<h2 id="motion-planning">Motion Planning</h2>
+<h4 id="motion-planning">Motion Planning</h4>
 <hr />
 <p>Harvey</p>
-<h2 id="simulation">Simulation</h2>
+<h4 id="simulation">Simulation</h4>
 <hr />
 <p>Luke (Rviz)</p>
-<h2 id="implementation-on-panda">Implementation on Panda</h2>
+<h4 id="implementation-on-panda">Implementation on Panda</h4>
 <hr />
+<h4 id="light-source">Light Source</h4>
+<hr />
+<p>A custom light torch was designed and manufactured to comply towards the dimensions of the Franka Emika end effector gripper. The STL file of the light stick can be found <a href="https://imperialcollegelondon.box.com/s/up7vvrtcb66sjumbtdnhm723nokyev2g">here</a> and be FDM printed on 0.2mm layer height at 30% infill. </p>
+<p>The light unit was designed as a hexagonal shape to be held securely on the end effector with a cone tip to direct the light source towards the centre of the unit.</p>
+<p>A second iteration was made to allow for the unit to be picked up automatically along with a single pole single throw (SPST) switch attached for the light source to stay on when the end effector gripper is closed.</p>
+<h6 id="attachment">Attachment</h6>
+<p>To add in the motion of the light stick being picked up, a magnetic strip was designed to be permanently attached on one end of the end effector. Magnets of the opposite polarity were attached on the main light unite to ensure it remains attached on the end effector when the gripper is opened.</p>
+<h6 id="circuitry">Circuitry</h6>
+<p>The internal circuitry of the light unit consists of two 1.5V AA Batteries, connected to a SPST switch and an LED. This would ensure that when the end effector gripper is closed, the light is turned on and vice versa when the gripper is open. This would also remove unwanted bright spots and allow for the possibility of continuous images within the same frame.</p>
 <h6 id="setting-up-franka-emika">Setting Up Franka Emika</h6>
 <p>First, release the brakes by making sure the external activation device (EAD) is pressed down. Then, in the controller web interface, click to open brakes. A clicking sound will be heard indicating the EAD button needs to be released. After releasing the EAD button, the LED light will turn white, ready to be used. </p>
 <h6 id="controlling-franka-ros">Controlling Franka &amp; ROS</h6>
