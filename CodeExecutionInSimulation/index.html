@@ -151,14 +151,14 @@
             <div class="section">
               
                 <h2 id="code-execution-in-simulation">Code Execution in Simulation</h2>
-<p>This section explains how to run the python code on a Panda Robot Simulation. Before attempting to light paint using a real robot it is recomended to first get it working in the Gazebo simulator within your virtual machine. This allows you to test your custom animations and verify everything is working without wasting time on a real robot.</p>
+<p>This section explains how to run the python code on a Panda Robot Simulation. Before attempting to light paint using a real robot it is recommended to first get it working in the Gazebo simulator within your virtual machine. This allows you to test your custom animations and verify everything is working without wasting time on a real robot.</p>
 <h4 id="1-downloading-code">1. Downloading Code</h4>
 <hr />
-<p>Once you have completed the previous steps to set up ROS on your computer, with the required modules,you can now use the light painting code in the Gazebo simulator. Up to date files can be found on GitHub at this <a href="https://github.com/HarveyU1/LightPaintingRobot">link</a>.
-Download <code>pandaLightPaint.py</code> and <code>frames.py</code> onto your linux virtual machine.</p>
+<p>Once you have completed the previous steps to set up ROS on your computer, with the required modules, you can now use the light painting code in the Gazebo simulator. Up to date files can be found on GitHub at this <a href="https://github.com/HarveyU1/LightPaintingRobot">link</a>.
+Download <code>pandaLightPaint.py</code> and <code>frames.py</code> onto your Linux virtual machine.</p>
 <h4 id="2-launching-gazebo">2. Launching Gazebo</h4>
 <hr />
-<p>Open a new terminator window and divide into 6 windows and type in the follwing.</p>
+<p>Open a new terminal window and divide it into 6 windows and type in the following.</p>
 <pre><code>In terminal 1 type      $roscore
 
 In terminal 2 type      $cd catkin_ws
@@ -177,8 +177,8 @@ In terminal 3 type      $cd catkin_ws
                         $source devel/setup.bash
                         $roslaunch panda_moveit_config demo.launch rviz_tutorial:=true
 </code></pre>
-<p>One MoveIt has started add motion planning and change the planning scene topic field to /planning_scene</p>
-<p>In planning request change planning group to panda_arm</p>
+<p>Once MoveIt has started, add motion planning and change the planning scene topic field to <code>/planning_scene</code></p>
+<p>In planning request, change planning group to <code>panda_arm</code></p>
 <h4 id="4-light-trails-in-moveit">4. Light Trails in MoveIt</h4>
 <hr />
 <p>By tracing the position of the end effector in RViz, it allows the path of the attached light-painting module to be recreated in the RViz viewport which helps when testing new animations. This effectively generates a digital model of the light painting that the Panda robot would recreate in real life.</p>
@@ -189,10 +189,10 @@ In terminal 3 type      $cd catkin_ws
 4. Check Panda_Hand[_]
 5. Tick the box Show Trail [_]
 </code></pre>
-<p>When the simulation is run in RViz you will see a line which shows the trajectory the end effector will move along.</p>
+<p>When the simulation is running in RViz, you will see a line which shows the trajectory the end effector will move along.</p>
 <h4 id="5-connect-moveit-to-gazebo">5. Connect MoveIt to Gazebo</h4>
 <hr />
-<p>To create the node which connects moveIt with Gazebo type the following</p>
+<p>To create the node which connects moveIt with Gazebo, type the following</p>
 <pre><code>In terminal 5 type      $cd catkin_ws
                         $cd src/panda_publisher
                         $python panda_publisher.py

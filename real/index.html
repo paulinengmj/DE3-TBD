@@ -149,10 +149,10 @@
 <h4 id="setting-up-panda-robot">Setting Up Panda Robot</h4>
 <hr />
 <p>First, release the brakes by making sure the external activation device (EAD) is pressed down. Then, in the controller web interface, click to open brakes. A clicking sound will be heard indicating the EAD button needs to be released. After releasing the EAD button, the LED light will turn white, ready to be used. </p>
-<p>Note: Remember to always have a designated person holding the safety stop top prevent damage to the robot during an error</p>
+<p><strong>Note</strong> Remember to always have a designated person holding the safety stop to prevent damage to the robot during an error.</p>
 <h4 id="controlling-franka-ros">Controlling Franka &amp; ROS</h4>
 <hr />
-<p>With libfranka and franka_ros installed in the real-time Linux kernel, the following steps should be carried to set up the robot. </p>
+<p>With <code>libfranka</code> and <code>franka_ros</code> installed in the real-time Linux kernel, the following steps should be carried to set up the robot. </p>
 <ol>
 <li>Open terminal and type <code>cd franka_ws</code></li>
 <li>Then, type <code>source /devel/setup.bash</code></li>
@@ -169,11 +169,12 @@ In terminal 4 type      $roslaunch panda_moveit_config moveit_rviz.launch
 </code></pre>
 <h4 id="executing-pandalightpaint">Executing pandaLightPaint</h4>
 <hr />
-<p>The system is now ready to run the pandaLightPaint code</p>
-<pre><code>In terminal 5 navigate to the folder where you sotred the python code and type
+<p>The system is now ready to run the <code>pandaLightPaint</code> code</p>
+<pre><code>In terminal 5 navigate to the folder where you sorted the python code and type
     $python pandaLightPaint.py
 </code></pre>
-<p>The robot should begin drawing the frames in the same way as in the simulation. Please refer to the other guide sections for further information on physical set up of the robot.</p>
+<p>The robot should begin drawing the frames in the same way as in the simulation. 
+Please refer to the other guide sections for further information on physical set up of the robot.</p>
               
             </div>
           </div>
