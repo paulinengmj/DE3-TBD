@@ -88,6 +88,10 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Future Development</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#error-detection">Error Detection</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#future-development">Future Development</a>
+    </li>
     </ul>
                     </li>
                 </ul>
@@ -138,13 +142,13 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="outcomes">Outcomes</h4>
+                <h2 id="outcomes">Outcomes</h2>
 <hr />
 <h4 id="error-detection">Error Detection</h4>
 <hr />
 <p>The chances of error were significantly mitigated by ensuring the motion plan to only be within the workspace of the robot, therefore reducing chances of motion planning error due to collision or being out of the task space. However, error detection and recovery could have been built into the code by using Frankx, which is a high-level motion planning library for Franka Emika Panda. Frankx is a python wrapper for Libfranka (which only works in C++), using Reflexes as a trajectory generator, Eigen for transformation calculations and <code>pybind11</code> for Python bindings. Once installed, the command <code>robot.recover_from_errors()</code> allows the robot to automatically recover from an error by resetting the robot. </p>
-<h4 id="missed-opportunities">Missed Opportunities</h4>
-<p>The following section includes missed opportunities that could have been implemented given a longer project time period.</p>
+<h4 id="future-development">Future Development</h4>
+<p>The following section includes future development that could have been implemented given a longer project time period.</p>
 <hr />
 <ol>
 <li>Automating Image Capture</li>
