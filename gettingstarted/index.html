@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Starting Up - DE3-TBD</title>
+  <title>Software - DE3-TBD</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Starting Up";
+    var mkdocs_page_name = "Software";
     var mkdocs_page_input_path = "gettingstarted.md";
     var mkdocs_page_url = null;
   </script>
@@ -49,9 +49,17 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">Getting Started</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Starting Up</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Software</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install-vmware-workstation-15-windows">Install VMware Workstation 15 (Windows)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-vmware-fusion-mac">Install VMware Fusion (Mac)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-ros-virtual-machine">Install ROS Virtual Machine</a>
+    </li>
     </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../hardware/">Hardware</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Proposal</span></p>
@@ -111,7 +119,7 @@
         
       
     
-    <li>Starting Up</li>
+    <li>Software</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -122,98 +130,40 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="starting-up">Starting up</h4>
+                <h4 id="setting-up-software">Setting Up Software</h4>
+<p>The following are the instructions on setting up a virtual machine for Windows or Mac</p>
 <hr />
-<p>The Franka Emika arm should be connected to the shop floor controller. When the controller box is turned on, the arm LEDs will flash yellow. Once booting is complete, the LEDs will turn solid yellow. At this point the brakes can be released.</p>
-<p>(image of the wiring)
-Wiring configuration for using the Franka.</p>
-<p>When the arm's LEDs show solid white, the robot is in movement mode. The external activation device (EAD), is a software stop. When pressed, it 'detaches' the arm from the controller which causes the arm to lock in place (the LEDs will show solid yellow when this happens). It is <strong>not</strong> an emergency stop, as it does not cut power to the arm/controller.</p>
-<p>Whilst the Arm is in movement mode, it can be manually manipulated by pressing both of the buttons at the end effector simultaneously. Whilst both buttons are pressed, the arm can be manually moved to a desired position. The buttons have a two stage press, and if you press too hard on the buttons, the arm will lock again. The Arm will automatically go into gravity compensation mode when manually moving it.</p>
-<h4 id="removing-or-adding-the-frankas-end-effector-hand">Removing or adding the Franka's end-effector (hand)</h4>
-<hr />
-<p>To detach or reattach Panda's end effector, the arm must be shut down completely first. Then, the end effector can be added or removed by removing/replacing both screws and  attaching/detaching the interface cable.</p>
-<p>Once the robot has restarted, go to <strong>Settings</strong> in the web interface, go to <strong>End effector</strong> and set both the hand drop-down menu and toggle the gripper.</p>
-<h4 id="franka-emika-software">Franka Emika Software</h4>
-<hr />
-<p>Software updates can be found at: http://support.franka.de/</p>
-<p>The software versions currently used in the robotics lab are:</p>
-<p>Franka Firmware          1.0.9</p>
-<p>Supports libfranka &lt; 0.2.0</p>
-<p>ros-kinetic-libfranka    0.1.0</p>
-<p>Current ROS version is 0.2.0</p>
-<p>The lab only supports libfranka 0.1.0 which is currently unavailable from <code>apt install</code>. 
-<strong>Do NOT uninstall ROS or libfranka on workstations which already have it installed</strong>.</p>
-<h4 id="setting-up-software">Setting Up Software</h4>
-<hr />
-<p>Install VMware Workstation 15 (Windows)
-1. Go to the downloads page on the VMware [website]
-(https://my.vmware.com/web/vmware/details?downloadGroup=WKST-1551-WIN&amp;productId=799&amp;rPId=39505)
-2. Sign up for a VMware account or log in if you already have an account
-3. Accept the End User License Agreement
-4. Download the installer file; VMware-workstation-full-15.5.1-15018442.exe
-5. Run the installer</p>
-<p>Install VMware Fusion (Mac)
-1. Go to the downloads page on the VMware [website]
-(https://my.vmware.com/group/vmware/details?downloadGroup=FUS-1151&amp;productId=798&amp;download=true&amp;fileId=13803aa0f6b80d2de175216be62ed576&amp;secureParam=8212e39586821d5fca319648ac9a5fe8&amp;uuId=4fd82e95-dad8-4400-97e1-8bc9fdc9cffe&amp;downloadType=)
-2. Sign up for a VMware account or log in if you already have an account
-3. Accept the End User License Agreement
-4. Download the installer file; VMware-Fusion-11.5.1-15018442.dmg
-5. Run the installer</p>
-<p>Install ROS Virtual Machine</p>
+<h5 id="install-vmware-workstation-15-windows">Install VMware Workstation 15 (Windows)</h5>
 <ol>
-<li>Download the Virtual machine archive file (.zip) from the link.
-[lhttps://imperialcollegelondon.account.box.com/login?redirect_url=https%3A%2F%2Fimperialcollegelondon.app.box.com%2Fs%2Fv6od29t4c4uinndqqwwebhn4o7xszmmk]</li>
+<li>Go to the downloads page on the VMware <a href="https://my.vmware.com/web/vmware/details?downloadGroup=WKST-1551-WIN&amp;productId=799&amp;rPId=39505">website</a></li>
+<li>Sign up for a VMware account or log in if you already have an account</li>
+<li>Accept the End User License Agreement</li>
+<li>Download the installer file; VMware-workstation-full-15.5.1-15018442.exe</li>
+<li>Run the installer</li>
+</ol>
+<h5 id="install-vmware-fusion-mac">Install VMware Fusion (Mac)</h5>
+<ol>
+<li>Go to the downloads page on the VMware <a href="https://my.vmware.com/group/vmware/details?downloadGroup=FUS-1151&amp;productId=798&amp;download=true&amp;fileId=13803aa0f6b80d2de175216be62ed576&amp;secureParam=8212e39586821d5fca319648ac9a5fe8&amp;uuId=4fd82e95-dad8-4400-97e1-8bc9fdc9cffe&amp;downloadType=">website</a></li>
+<li>Sign up for a VMware account or log in if you already have an account</li>
+<li>Accept the End User License Agreement</li>
+<li>Download the installer file; VMware-Fusion-11.5.1-15018442.dmg</li>
+<li>Run the installer</li>
+</ol>
+<h5 id="install-ros-virtual-machine">Install ROS Virtual Machine</h5>
+<ol>
+<li>Download the Virtual machine archive file (.zip) from <a href="lhttps://imperialcollegelondon.account.box.com/login?redirect_url=https%3A%2F%2Fimperialcollegelondon.app.box.com%2Fs%2Fv6od29t4c4uinndqqwwebhn4o7xszmmk">here</a>.</li>
 <li>Extract the zip archive. It contains a single virtual machine (one .vmx file and one or more .vmdk files).</li>
 <li>Run VMware Workstation (or VMware Fusion on Mac), click “open an existing VM” and select the .vmx file.</li>
 <li>Start the VM by clicking on the “play” button.</li>
-<li>Inside the VM, log in with the credentials:
-Login: user
-Password: learn</li>
+<li>
+<p>Inside the VM, log in with the credentials:</p>
+</li>
+<li>
+<p>login: <code>user</code></p>
+</li>
+<li>password <code>learn</code></li>
 </ol>
-<p>Setting up RViz and Gazebo for Panda Simulation</p>
-<p>Save the python file to be simulated in the VM folder catkin_ws/src/franka_gazebo/scripts</p>
-<p>Start roscore
-Open a new terminal
-$ roscore</p>
-<p>Start Gazebo
-Open a new terminal
-$ cd catkin_ws
-$ source level/setup.bash
-$ rosin gazebo_ros gazebo</p>
-<p>Add Panda
-Open a new terminal
-$ cd catkin_ws
-$ source level/setup.bash
-$ roslaunch franka_gazebo panda_arm_hand.launch</p>
-<p>You should now see Panda in the Gazebo emulation pointing upwards.</p>
-<p>Start MoveIt!
-Open a new terminal
-$ cd catkin_ws
-$ source devel/setup.bash
-$ roslaunch panda_moveit_config demo.launch rviz_tutorial:=true</p>
-<p>RViz will start
-Add motion planning
-Make sure the Planning Scene Topic is set to /planning_scene
-In Planning Request, change the Planning Group to panda_arm
-You should see Panda in RViz in the same pose as Gazebo</p>
-<p>Start the node connecting MoveIt! to Gazebo
-Open a new terminal
-$ cd catkin_ws
-$ cd src/panda_publisher
-$ python panda_publisher.py</p>
-<p>Updating the Gazebo simulation gains
-Open a new terminal
-$ cd catkin_ws
-$ cd src/franka_gazebo/config
-$ edit default.yaml</p>
-<p>Edit the file to match this
-[image of the yams file]
-Save and close the file</p>
-<p>Controlling Panda
-Open a new terminal
-$ cd catkin_ws
-$ cd src/franka_gazebo/scripts
-$ python ‘YOUR FILE NAME’.py</p>
+<p>Once you have both the VMWare and ROS Virtual Machine installed and running, you are ready to begin running simulations.</p>
               
             </div>
           </div>
@@ -221,7 +171,7 @@ $ python ‘YOUR FILE NAME’.py</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../projectproposal/" class="btn btn-neutral float-right" title="Proposal">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../hardware/" class="btn btn-neutral float-right" title="Hardware">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -249,7 +199,7 @@ $ python ‘YOUR FILE NAME’.py</p>
       
       
       
-        <span style="margin-left: 15px"><a href="../projectproposal/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../hardware/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
