@@ -81,25 +81,29 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#code-structure">Code Structure</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pandalightpaint-set-up">pandaLightPaint set up</a>
+    <li class="toctree-l2"><a class="reference internal" href="#main-code-pandalightpaint">Main Code (pandaLightPaint)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#set-up">Set Up</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#modifiable-variables">Modifiable variables</a>
+    <li class="toctree-l3"><a class="reference internal" href="#modifiable-variables">Modifiable variables</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#main-execution-set-up">Main Execution Set Up</a>
+    <li class="toctree-l3"><a class="reference internal" href="#main-execution-set-up">Main Execution Set Up</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#main-execution-loop">Main Execution Loop</a>
+    <li class="toctree-l3"><a class="reference internal" href="#main-execution-loop">Main Execution Loop</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#gotopose-function">goToPose Function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#gotopose-function">goToPose Function</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#shakehand-function">shakeHand Function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#shakehand-function">shakeHand Function</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#goonpath-function">goOnPath Function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#goonpath-function">goOnPath Function</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#lighton-function">lightOn Function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#lighton-function">lightOn Function</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#lightoff-function">lightOff Function</a>
+    <li class="toctree-l3"><a class="reference internal" href="#lightoff-function">lightOff Function</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#storing-animation">Storing Animation</a>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#storing-animation-frames">Storing Animation (frames)</a>
     </li>
     </ul>
                     </li>
@@ -169,7 +173,11 @@
 <p>-pandaLightPaint is the main python file which is executed from ROS to carry out motion planning for each frame of the animation and then executes this motion plan by moving the end effector and controlling the gripper position.</p>
 <p>-frames is the python file in which the cartesian based trajectory is stored for a complete animation. This is imported by pandaLightPaint and informs the motion plan which is calculated.</p>
 <p>&nbsp;</p>
-<h4 id="pandalightpaint-set-up">pandaLightPaint set up</h4>
+<p>&nbsp;</p>
+<h4 id="main-code-pandalightpaint">Main Code (pandaLightPaint)</h4>
+<hr />
+<p>The main python code that is launched from the terminal.</p>
+<h6 id="set-up">Set Up</h6>
 <hr />
 <p>First, the required python modules are imported, ensure that all of these are installed in your python installation within ROS. Note ROS specific modules such as different message formats which allow communication between nodes.</p>
 <pre><code class="python">#!/usr/bin/env python
@@ -194,7 +202,7 @@ import tf
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="modifiable-variables">Modifiable variables</h4>
+<h6 id="modifiable-variables">Modifiable variables</h6>
 <hr />
 <p>These are the variables which can be changed to modify the behaviour of the robot. Some of these are useful to modify when troubleshooting for problems as they can often help prevent errors.</p>
 <p>The offset coordinates are the cartesian coordinates in metres of the starting position for all frame drawing. The frame coordinates, in framelist, are provided w.r.t to a central local origin point. In the case of the butterfly, this is the centre of its body. The offset coordinated oOffCords specify the location of the frames local coordinate system relative to the robots coordinate system which has an origin located at the base of the arm. By default, the offset coordinates are set to 0.5 metres in front of the robot(x-axis) and 0.5 metres height above the base of the robot(z-axis). This always for a good amount of redundancy when drawing frames as the arm is well within the dexterous workspace.</p>
@@ -225,7 +233,7 @@ lightOffDist = 0.05
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="main-execution-set-up">Main Execution Set Up</h4>
+<h6 id="main-execution-set-up">Main Execution Set Up</h6>
 <hr />
 <p>This is the main section of the code which is executed when the program is launched from the terminal. It includes the initial set up as the main loop which is responsible for drawing each frame.</p>
 <p>To begin with rospy a new node is created for the panda light controller. Next, the motion planing is initialised with the group name being assigned.</p>
@@ -250,7 +258,7 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="main-execution-loop">Main Execution Loop</h4>
+<h6 id="main-execution-loop">Main Execution Loop</h6>
 <hr />
 <p>The main execution loop will be carried out for each frame of the animation in framelist. Each time this loop is executed a frame will be drawn. The loop starts with a terminal message informing the user to open the shutter on the camera. Next, the lightOn function is called which closes the grippers to turn on the torch held by panda. The goOnPath function is executed which draws one frame of the animation. The light is then turned off and a terminal message is printed informing the user to end the current photo. Finally, a delay is carried out to allow time for the camera to process the image before the next frame.</p>
 <pre><code class="python">for frame in framelist:
@@ -278,7 +286,7 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="gotopose-function">goToPose Function</h4>
+<h6 id="gotopose-function">goToPose Function</h6>
 <hr />
 <p>This function takes the input arguments roll, pitch and yaw, as well as x,y and z coordinates, and will calculate and execute a motion plan to get the robot in the correct pose. This is done by first clearing the old pose targets. Then converting the rotation values into a quaternion which is used to set the new values for the origin pose (which is the target pose). The motion plan is then calculated and executed. If a motion plan cant be found for the chosen pose values and an error message will be displayed in the terminal.</p>
 <pre><code class="python">def goToPose(roll,pitch,yaw,xCord,yCord,zCord):
@@ -299,7 +307,7 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="shakehand-function">shakeHand Function</h4>
+<h6 id="shakehand-function">shakeHand Function</h6>
 <hr />
 <p>This function will execute a number of handshakes specified by the quantity input argument. These handshakes can be used to indicate the start and end of frames to the user when operating the robot if the terminal is not visible by the camera operator. This function can deal with invalid input arguments and will only execute if the integer of the input quantity is greater than 0. An error message will be displayed for invalid input.</p>
 <pre><code class="python">def shakeHand(quantity):
@@ -316,7 +324,7 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="goonpath-function">goOnPath Function</h4>
+<h6 id="goonpath-function">goOnPath Function</h6>
 <hr />
 <p>This function takes a frame of coordinates, as it's input argument, and then executes the drawing of the frame by calculating a motion plan and executing it on the robot. This function works similarly to the goToPose function, however, group.compute_cartesian_path is used to calculate the motion plan as the trajectory is based upon multiple coordinates. The coordinates that make up a frame are converted into drawpose values inside the for loop and these are then added to the list of poses called drawpoints. The motion plan is calculated based on this list of robot poses.</p>
 <pre><code class="python">def goOnPath(frame):
@@ -353,7 +361,7 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="lighton-function">lightOn Function</h4>
+<h6 id="lighton-function">lightOn Function</h6>
 <hr />
 <p>This function will turn on the light attached to the end effector by closing the gripper based upon the value set in the lightOnDist variable.</p>
 <pre><code class="python">def lightOn():
@@ -362,7 +370,7 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="lightoff-function">lightOff Function</h4>
+<h6 id="lightoff-function">lightOff Function</h6>
 <hr />
 <p>This function will turn off the light attached to the end effector by opening the gripper based upon the value set in the lightOffDist variable.</p>
 <pre><code class="python">def lightOff():
@@ -371,7 +379,9 @@ gripper_msg.layout.dim = [MultiArrayDimension('', 2, 1)]
 </code></pre>
 
 <p>&nbsp;</p>
-<h4 id="storing-animation">Storing Animation</h4>
+<p>&nbsp;</p>
+<h4 id="storing-animation-frames">Storing Animation (frames)</h4>
+<hr />
 <p>The animation frames are stored in the framelist in the python file frames. This is the output data from the animation creation process in Rhino. Each frame is comprised of a list of 3 value lists which contain a coordinate value [x,y,z]. Multiple frames make up an animation sequence. An example of one frame from the butterfly animation can be seen below.</p>
 <pre><code class="python">framelist = [[[0, 0, 0],
 [-30.112995, 0, 4.267024],
