@@ -58,9 +58,9 @@
                 </ul>
                 <p class="caption"><span class="caption-text">Project Guide</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../CodeExecutionInSimulation/">Simulation</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../CodeExecutionInSimulation/">Execution in Simulation</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../real/">Real</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../real/">Execution in Reality</a>
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Creating Animation</a>
     <ul class="current">
@@ -90,6 +90,8 @@
                 <ul>
                     <li class="toctree-l1"><a class="" href="../achievement.md">Succesful Achievements</a>
                     </li>
+                    <li class="toctree-l1"><a class="" href="../error.md">Error Detection</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../fail/">Failed Attempts</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../evaluation/">Future Development</a>
@@ -100,8 +102,6 @@
                     <li class="toctree-l1"><a class="reference internal" href="../resource/">Resources</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../vid/">Videos</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../photo/">Photos</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../about/">Team</a>
                     </li>
@@ -145,7 +145,7 @@
                 <h2 id="animation-creation">Animation Creation</h2>
 <hr />
 <p>The butterfly model was simplified to a low-poly model since it was expected that a large number of frames would be needed to form a smooth animation. I was also intended that the focus was on the animation itself and not on the model. As the project was limited in terms of time with the robot, a simplified outline presented the most opportunity to iterate and increase robotic complexity. Ie. A low fidelity model reduces the amount of time necessary for the robot to complete each frame. </p>
-<p>Using slow-motion footage of butterflies in flight, one model for each frame of the animation was created in <a href="https://www.rhino3d.com/">Rhinoceros 3D</a>.  The animation was simplified to 11 frames. The angles of the butterfly wings about the x-axis and the z-axis are approximately sinusoidal. A subtle body wiggle was also added, which is a small, random rotation of the two body triangles about the y-axis. (Angles in reference to <a href="https://imperialcollegelondon.box.com/s/qdrymjcbszoux44az3qeqkwr19efs0dn">this video</a> axes).</p>
+<p>Using slow-motion footage of butterflies in flight, one model for each frame of the animation was created in <a href="https://www.rhino3d.com/">Rhinoceros 3D</a>.  The animation was simplified to 11 frames. The angles of the butterfly wings about the x-axis and the z-axis are approximately sinusoidal. A subtle body wiggle was also added, which is a small, random rotation of the two body triangles about the y-axis. Angles about axes are shown in <a href="https://imperialcollegelondon.box.com/s/qdrymjcbszoux44az3qeqkwr19efs0dn">this video</a>.</p>
 <pre><code>*NOTE
 Grasshopper is a plugin included in Rhino 6, which has built-in functions called “components” to allow for easy data manipulation.
 </code></pre>
@@ -155,9 +155,9 @@ Grasshopper is a plugin included in Rhino 6, which has built-in functions called
 
 2. Draw an equilateral triangle on the XY plane, with one vertex on the origin.
 
-3. With the mirror command, mirror the triangle through the XZ plane to form the buttefly wings.
+3. With the mirror command, mirror the triangle through the XZ plane to form the butterfly wings.
 
-4. Draw an isoscles triangle on the XZ plane with the vertex corresponding to the smallest angle to the origin.
+4. Draw an isosceles triangle on the XZ plane with the vertex corresponding to the smallest angle to the origin.
 
 5. Using the mirror command, mirror the triangle through the XY plane to form the butterfly body.
 
@@ -165,21 +165,21 @@ Grasshopper is a plugin included in Rhino 6, which has built-in functions called
 
 7. Copy the group to get 11 instances in total where 1 is for each frame.
 
-8. Isolate each group to its own seperate layer by using the 'Change Layer Command'.
+8. Isolate each group to it's separate layer by using the 'Change Layer Command'.
 
-9. Rotate the wings about the X and Z axes according with the reference of a buterfly flight footage incrementally over 11 frames.
+9. Rotate the wings about the X and Z axes according to with the reference of a butterfly flight footage incrementally over 11 frames.
 
 10. Open the Grasshopper plugin.
 
 11. Open the stl_file_to_edges_and_coordinates.gh file in Grasshopper.
 
-12. Right click on the first block in each frame and click 'Set Multiple Meshes'.
+12. Right-click on the first block in each frame and click 'Set Multiple Meshes'.
 
 13. Select the group in the associated layer. Ie. Layer 1 group for frame 1.
 
 14. Wait for the algorithm to run.
 
-15. Right click on the last block for each frame and select 'Copy Data Only'.
+15. Right-click on the last block for each frame and select 'Copy Data Only'.
 
 16. Paste the data in your preferred text editor in the correct frame order.
 
@@ -191,23 +191,24 @@ Grasshopper is a plugin included in Rhino 6, which has built-in functions called
 <li>The stl_file_to_edges_and_coordinates.gh file can be found <a href="https://imperialcollegelondon.box.com/s/6u80r0g7vsitpzp55wts49q7c3fufacl">here</a></li>
 <li>The coordinate_list_about-origin.py file can be found <a href="https://imperialcollegelondon.box.com/s/achz2lw7so5wnkm1lnh4fctska04rhh0">here</a></li>
 </ul>
+<p><img alt="" src="../cords.png" /></p>
 <h4 id="general-animation">General Animation</h4>
 <p>These are the general steps which can be repeated to output the same result for each frame in Grasshopper of your animation of choice:</p>
 <pre><code>1. Deconstruct a single image into vertices, faces, colours and normals using the 'deconstruct mesh' components.
 
-2. The output will be a list of a list, where each vertex is in a XYZ coordinate.
+2. The output will be a list of a list, where each vertex is in an XYZ coordinate.
 
 3. Remove any repeated centre vertices by putting the lists through the 'create set' component.
 
 4. Extract each sublist using the 'list item' component.
 
-5. Reorded the list for the robot to move from coordinate to coordinate without retracing the same path twice.
+5. Recorded the list for the robot to move from coordinate to coordinate without retracing the same path twice.
 
 *NOTE This is important to avoid any brighter spots in the animation frames which would be seen as an anomaly.
 
 6. The list of coordinates will be in curly brackets, replace them with square brackets.
 </code></pre>
-<p>This general method allows for the flexibility of changing the butterfly animation frame by frame without the need to manually change each coordinate. This would also allow for more complexity to be added easily on the butterfly models (ie. higher poly models), at the cost of a longer per-frame drawing time. The Grasshopper definition shown in figure below is robust enough to deal with having curved lines, and would output these as a higher number of interpolated points to form the curves. </p>
+<p>This general method allows for the flexibility of changing the butterfly animation frame by frame without the need to manually change each coordinate. This would also allow for more complexity to be added easily on the butterfly models (ie. higher poly models), at the cost of longer per-frame drawing time. The Grasshopper definition shown in the figure below is robust enough to deal with having curved lines and would output these as a higher number of interpolated points to form the curves. </p>
 <p><img alt="" src="../figc.JPG" /></p>
               
             </div>
@@ -219,7 +220,7 @@ Grasshopper is a plugin included in Rhino 6, which has built-in functions called
         <a href="../lightsource/" class="btn btn-neutral float-right" title="Panda Torch">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../real/" class="btn btn-neutral" title="Real"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../real/" class="btn btn-neutral" title="Execution in Reality"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
