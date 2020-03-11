@@ -148,22 +148,39 @@
 Grasshopper is a plugin included in Rhino 6, which has built-in functions called “components” to allow for easy data manipulation. </p>
 <p>To create your own butterfly animation, follow these steps below:</p>
 <pre><code>1. Open Rhino 6.
+
 2. Draw an equilateral triangle on the XY plane, with one vertex on the origin.
+
 3. With the mirror command, mirror the triangle through the XZ plane to form the buttefly wings.
+
 4. Draw an isoscles triangle on the XZ plane with the vertex corresponding to the smallest angle to the origin.
+
 5. Using the mirror command, mirror the triangle through the XY plane to form the butterfly body.
+
 6. "CTRL +G" to group all four triangles.
+
 7. Copy the group to get 11 instances in total where 1 is for each frame.
+
 8. Isolate each group to its own seperate layer by using the 'Change Layer Command'.
+
 9. Rotate the wings about the X and Z axes according with the reference of a buterfly flight footage incrementally over 11 frames.
+
 10. Open the Grasshopper plugin.
-11. Open the stl_file_to_edges_and_coordinates.gh file in Grasshopper. 
+
+11. Open the stl_file_to_edges_and_coordinates.gh file in Grasshopper.
+
 12. Right click on the first block in each frame and click 'Set Multiple Meshes'.
+
 13. Select the group in the associated layer. Ie. Layer 1 group for frame 1.
+
 14. Wait for the algorithm to run.
+
 15. Right click on the last block for each frame and select 'Copy Data Only'.
+
 16. Paste the data in your preferred text editor in the correct frame order.
+
 17. Replace all curly brackets with square brackets.
+
 18. Format the data so that it looks like the list in coordinate_list_about-origin.py
 </code></pre>
 <ul>
@@ -171,10 +188,14 @@ Grasshopper is a plugin included in Rhino 6, which has built-in functions called
 <li>The coordinate_list_about-origin.py file can be found <a href="https://imperialcollegelondon.box.com/s/achz2lw7so5wnkm1lnh4fctska04rhh0">here</a></li>
 </ul>
 <p>These are the genereal steps which can be repeated to output the same result for each frame in Grasshopper of your animation of choice:</p>
-<pre><code>1. Deconstruct the singlae image into vertices, faces, colours and normals using the 'deconstruct mesh' components. 
-2. The output will be a list of a list, where each vertex is in a XYZ coordinate
+<pre><code>1. Deconstruct the singlae image into vertices, faces, colours and normals using the 'deconstruct mesh' components.
+
+2. The output will be a list of a list, where each vertex is in a XYZ coordinate.
+
 3. Remove any repeated centre vertices by putting the lists through the 'create set' component.
-4. Extract each sublist using the 'list item' component
+
+4. Extract each sublist using the 'list item' component.
+
 5. Reorded the list for the robot to move from coordinate to coordinate without retracing the same path twice.
 
 NOTE
