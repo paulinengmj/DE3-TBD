@@ -80,21 +80,23 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#simulation">Simulation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#implementation-on-panda">Implementation on Panda</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#light-source">Light Source</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#attachment">Attachment</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#circuitry">Circuitry</a>
     </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation-on-panda">Implementation on Panda</a>
+        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#setting-up-franka-emika">Setting Up Franka Emika</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#controlling-franka-ros">Controlling Franka &amp; ROS</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#grass">grass</a>
+    <li class="toctree-l2"><a class="reference internal" href="#image-capture">Image Capture</a>
     </li>
     </ul>
                     </li>
@@ -182,9 +184,11 @@
 <p>Harvey</p>
 <h4 id="simulation">Simulation</h4>
 <hr />
-<p>Luke (Rviz)</p>
-<h4 id="implementation-on-panda">Implementation on Panda</h4>
-<hr />
+<p>Motion Planning Simulation</p>
+<p>Before real-life implementation of the code on the Panda robot, the entire task was tested using RViz and Gazebo simulations. This allowed for all poses and time functions to be tested without risk of damaging therobot. It also made it easier to collaborate on and iteratively improve the code as it was not necessary for each team member to individually access the physical robot. The Panda model was loaded, spawned and placed into the Gazebo environment, then controlled with the Python code written by the group members.</p>
+<p>Light Painting Simulation</p>
+<p>By tracing the position of the end effector in RViz, it allowed the path of the attached light-painting module to be recreated in the RViz viewport. This method proved to be much more efficient than camera implementation within Gazebo, which required additional plugins (such as a camera sensor plugin to publish the live image to an image topic and LinkPlot3DPlugin to achieve isolated link tracing) and produced a noisier output due to the shaking exhibited within Gazebo simulations. This effectively generated a digital model of the light painting that the Panda robot would recreate in real life.</p>
+<p>To initialize the light tracing simulation in RViz, go to:Motion Planning&gt;Planned Path&gt;Links&gt;Panda_Hand[<em>]&gt;Show Trail [</em>]Ensure both Panda_Hand[<em>] and Show Trail[</em>] are both ticked.</p>
 <h4 id="light-source">Light Source</h4>
 <hr />
 <p>A custom light torch was designed and manufactured to comply towards the dimensions of the Franka Emika end effector gripper. The STL file of the light stick can be found <a href="https://imperialcollegelondon.box.com/s/up7vvrtcb66sjumbtdnhm723nokyev2g">here</a> and be FDM printed on 0.2mm layer height at 30% infill. </p>
@@ -194,6 +198,8 @@
 <p>To add in the motion of the light stick being picked up, a magnetic strip was designed to be permanently attached on one end of the end effector. Magnets of the opposite polarity were attached on the main light unite to ensure it remains attached on the end effector when the gripper is opened.</p>
 <h6 id="circuitry">Circuitry</h6>
 <p>The internal circuitry of the light unit consists of two 1.5V AA Batteries, connected to a SPST switch and an LED. This would ensure that when the end effector gripper is closed, the light is turned on and vice versa when the gripper is open. This would also remove unwanted bright spots and allow for the possibility of continuous images within the same frame.</p>
+<h4 id="implementation-on-panda">Implementation on Panda</h4>
+<hr />
 <h6 id="setting-up-franka-emika">Setting Up Franka Emika</h6>
 <p>First, release the brakes by making sure the external activation device (EAD) is pressed down. Then, in the controller web interface, click to open brakes. A clicking sound will be heard indicating the EAD button needs to be released. After releasing the EAD button, the LED light will turn white, ready to be used. </p>
 <h6 id="controlling-franka-ros">Controlling Franka &amp; ROS</h6>
@@ -213,8 +219,7 @@
 • Terminal 5: python ‘NAMEOFCODE’.py
 </code></pre>
 <p><strong><em>NOTE:</em></strong> to change the ‘NAMEOFCODE’ as the name of python file to be executed.</p>
-<h4 id="grass">grass</h4>
-<h2 id="image-capture">Image Capture</h2>
+<h4 id="image-capture">Image Capture</h4>
 <hr />
               
             </div>
