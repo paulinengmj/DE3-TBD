@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Hardware - DE3-TBD</title>
+  <title>Lo-Fi Development - DE3-TBD</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Hardware";
-    var mkdocs_page_input_path = "hardware.md";
+    var mkdocs_page_name = "Lo-Fi Development";
+    var mkdocs_page_input_path = "betatest.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -48,14 +48,12 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">Getting Started</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../Image/">Introduction</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Software</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Hardware</a>
-    <ul class="current">
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../hardware/">Hardware</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Guide</span></p>
@@ -78,8 +76,12 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Development</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../betatest/">Lo-Fi Development</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Lo-Fi Development</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#steps">Steps</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="" href="../codedevelopment.md">Code Development</a>
                     </li>
@@ -125,11 +127,11 @@
     
       
         
-          <li>Getting Started &raquo;</li>
+          <li>Project Development &raquo;</li>
         
       
     
-    <li>Hardware</li>
+    <li>Lo-Fi Development</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -140,16 +142,23 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="franka-emika-software">Franka Emika Software</h4>
+                <h2 id="lo-fi-beta-testing">Lo-Fi Beta Testing</h2>
 <hr />
-<p>Software updates can be found at: http://support.franka.de/</p>
-<p>The software versions currently used in the robotics lab are:</p>
-<p>Franka Firmware          1.0.9</p>
-<p>Supports libfranka &lt; 0.2.0</p>
-<p>ros-kinetic-libfranka    0.1.0</p>
-<p>Current ROS version is 0.2.0</p>
-<p>The lab only supports libfranka 0.1.0 which is currently unavailable from <code>apt install</code>. 
-<strong>Do NOT uninstall ROS or libfranka on workstations which already have it installed</strong>.</p>
+<p>To validate the concept, a beta test was first conducted without the robotic arm. In this experiment, a human, an iPhone torch, a template, a stand, a camera and a tripod were used.</p>
+<p>The template was rotated at approximately 20 degree intervals through 180 degrees, pivoting on the stand. At each rotation, a long exposure image was taken on the camera and the human moved the light around the frame. Once this sequence was complete, the images were manually compiled in a video editing software to create the beta test animation.</p>
+<p><img src="betatest.png" alt="drawing" width="400"/>
+<img alt="" src="../betatest.png" /></p>
+<h3 id="steps">Steps</h3>
+<ol>
+<li>Mount camera on tripod &amp; template about stand</li>
+<li>Open camera shutter</li>
+<li>Trace image with torch</li>
+<li>Close camera shutter</li>
+<li>Rotate template approximately 20&deg; about stand</li>
+<li>Repeat steps 2 to 5</li>
+<li>Import images</li>
+<li>Compile images</li>
+</ol>
               
             </div>
           </div>
@@ -157,10 +166,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../CodeExecutionInSimulation/" class="btn btn-neutral float-right" title="Simulation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../fail/" class="btn btn-neutral float-right" title="Failed Attempts">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../gettingstarted/" class="btn btn-neutral" title="Software"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../trouble/" class="btn btn-neutral" title="Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -186,10 +195,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../gettingstarted/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../trouble/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../CodeExecutionInSimulation/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../fail/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

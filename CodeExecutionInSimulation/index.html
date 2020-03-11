@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Hardware - DE3-TBD</title>
+  <title>Simulation - DE3-TBD</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Hardware";
-    var mkdocs_page_input_path = "hardware.md";
+    var mkdocs_page_name = "Simulation";
+    var mkdocs_page_input_path = "CodeExecutionInSimulation.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -48,19 +48,31 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
                 <p class="caption"><span class="caption-text">Getting Started</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../Image/">Introduction</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../gettingstarted/">Software</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Hardware</a>
-    <ul class="current">
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../hardware/">Hardware</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Guide</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../CodeExecutionInSimulation/">Simulation</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Simulation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-downloading-code">1) Downloading Code</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-launching-gazebo">2) Launching Gazebo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-launching-moveit">3) Launching MoveIt</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-light-trails-in-moveit">4) Light Trails in MoveIt</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-connect-moveit-to-gazebo">5) Connect MoveIt to Gazebo</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-launching-pandalightpaint">5) launching pandaLightPaint</a>
+    </li>
+    </ul>
                     </li>
                     <li class="toctree-l1"><a class="" href="../CodeExecutionOnRealRobot.md">Real</a>
                     </li>
@@ -125,11 +137,11 @@
     
       
         
-          <li>Getting Started &raquo;</li>
+          <li>Project Guide &raquo;</li>
         
       
     
-    <li>Hardware</li>
+    <li>Simulation</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -140,16 +152,62 @@
           <div role="main">
             <div class="section">
               
-                <h4 id="franka-emika-software">Franka Emika Software</h4>
+                <h2 id="code-execution-in-simulation">Code Execution in Simulation</h2>
+<p>This section explains how to run the python code on a Panda Robot Simulation. Before attempting to light paint using a real robot it is recomended to first get it working in the Gazebo simulator within your virtual machine. This allows you to test your custom animations and verify everything is working without wasting time on a real robot.</p>
+<h4 id="1-downloading-code">1) Downloading Code</h4>
 <hr />
-<p>Software updates can be found at: http://support.franka.de/</p>
-<p>The software versions currently used in the robotics lab are:</p>
-<p>Franka Firmware          1.0.9</p>
-<p>Supports libfranka &lt; 0.2.0</p>
-<p>ros-kinetic-libfranka    0.1.0</p>
-<p>Current ROS version is 0.2.0</p>
-<p>The lab only supports libfranka 0.1.0 which is currently unavailable from <code>apt install</code>. 
-<strong>Do NOT uninstall ROS or libfranka on workstations which already have it installed</strong>.</p>
+<p>Once you have completed the previous steps to set up ROS on your computer, with the required modules,you can now use the light painting code in the Gazebo simulator. Up to date files can be found on GitHub at this link https://github.com/HarveyU1/LightPaintingRobot. </p>
+<p>Download pandaLightPaint.py and frames.py onto your linux virtual machine.</p>
+<h4 id="2-launching-gazebo">2) Launching Gazebo</h4>
+<hr />
+<p>Open a new terminator window and divide into 6 windows and type in the follwing.</p>
+<pre><code>In terminal 1 type      $roscore
+
+In terminal 2 type      $cd catkin_ws
+                        $cd source devel/setup.bash
+                        $rosrun gazebo_ros gazebo
+
+In terminal 3 type      $cd catkin_ws
+                        $source devel/setup.bash
+                        $roslaunch franka_gazebo panda_arm_hand.launch
+</code></pre>
+<p>You should see that the gazebo simulator has launched and a model of the panda robot can be seen pointing upwards in the environment.</p>
+<h4 id="3-launching-moveit">3) Launching MoveIt</h4>
+<hr />
+<p>To launch and set up MoveIt for motion planning do the following</p>
+<pre><code>In terminal 4 type      $cd_catkin_ws
+                        $source devel/setup.bash
+                        $roslaunch panda_moveit_config demo.launch rviz_tutorial:=true
+</code></pre>
+<p>One MoveIt has started add motion planning and change the planning scene topic field to /planning_scene</p>
+<p>In planning request change planning group to panda_arm</p>
+<h4 id="4-light-trails-in-moveit">4) Light Trails in MoveIt</h4>
+<hr />
+<p>By tracing the position of the end effector in RViz, it allows the path of the attached light-painting module to be recreated in the RViz viewport which helps when testing new animations. This effectively generates a digital model of the light painting that the Panda robot would recreate in real life.</p>
+<p>To initialize the light tracing simulation in RViz, go to:</p>
+<pre><code>1. Motion Planning
+2. Planned Path
+3. Links
+4. Check Panda_Hand[_]
+5. Tick the box Show Trail [_]
+</code></pre>
+<p>When the simulation is run in RViz you will see a line which shows the trajectory the end effector will move along.</p>
+<h4 id="5-connect-moveit-to-gazebo">5) Connect MoveIt to Gazebo</h4>
+<hr />
+<p>To create the node which connects moveIt with Gazebo type the following</p>
+<pre><code>In terminal 5 type      $cd catkin_ws
+                        $cd src/panda_publisher
+                        $python panda_publisher.py
+</code></pre>
+<h4 id="5-launching-pandalightpaint">5) launching pandaLightPaint</h4>
+<hr />
+<p>Everything now set for the simulation so you can launch the pandaLightPaint python code</p>
+<pre><code>In terminal 6 type      $cd catkin_ws
+                        cd to the folder you stored the code in
+                        $python pandaLightPaint.py
+</code></pre>
+<p>The first time you run this you will get some error messages as the robot starts at singularity in the simulation. After about a minute it will find a valid motion plan to get out of singularity. At this point cancel the execution using ctrl c then start the code again. It should now run properly without errors.</p>
+<p>You should see the robot drawing individual frames in both gazebo and RViz and pausing in between each frame to allow the photo to be processed.</p>
               
             </div>
           </div>
@@ -157,10 +215,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../CodeExecutionInSimulation/" class="btn btn-neutral float-right" title="Simulation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../animationcreation/" class="btn btn-neutral float-right" title="Creating Animation">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../gettingstarted/" class="btn btn-neutral" title="Software"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../hardware/" class="btn btn-neutral" title="Hardware"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -186,10 +244,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../gettingstarted/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../hardware/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../CodeExecutionInSimulation/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../animationcreation/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
