@@ -150,6 +150,75 @@
 <p>Current ROS version is 0.2.0</p>
 <p>The lab only supports libfranka 0.1.0 which is currently unavailable from <code>apt install</code>. 
 <strong>Do NOT uninstall ROS or libfranka on workstations which already have it installed</strong>.</p>
+<h4 id="getting-started">Getting started</h4>
+<hr />
+<p>This section details how to connect the robot and test the setup by using FCI to read the current state.</p>
+<h5 id="operating-the-robot">Operating the robot</h5>
+<p>Before going further though, here are a few safety considerations. Always check the following things before powering on the robot:</p>
+<p>Make sure that the arm has been mounted on a stable base and cannot topple over, even when performing fast motions or abrupt stops.</p>
+<p>Caution</p>
+<p>Only tabletop mounting is supported, i.e. the Arm must be mounted perpendicular to the ground! Other mountings will void your warranty and might cause damage to the robot!</p>
+<p>Ensure that the cable connecting Arm and Control is firmly attached on both sides.
+Connect the external activation device to Arm’s base and keep it next to you in order to be able to stop the robot at any time.
+Hint</p>
+<p>Activating the external activation device will disconnect the Arm from Control. The joint motor controllers will then hold their current position. The external activation device is not an emergency stop!</p>
+<p>This list is non-exhaustive! The manual delivered with your robot contains a chapter dedicated to safety. Please read it carefully and follow the instructions.</p>
+<p>Important</p>
+<p>The workstation PC which commands your robot using the FCI must always be connected to the LAN port of Control (shop floor network) and not to the LAN port of the Arm (robot network).</p>
+<p>Setting up the network
+Good network performance is crucial when controlling the robot using FCI. Therefore it is strongly recommended to use a direct connection between the workstation PC and Panda’s Control. This section describes how to configure your network for this use case.</p>
+<p>_images/control.png
+Use Control’s LAN port when controlling the robot through FCI. Do not connect to the port in Arm’s base.</p>
+<p>The Control and your workstation must be configured to appear on the same network. Simplest way to achieve that is to use static IP addresses. Any two addresses on the same network would work, but the following values will be used for the purpose of this tutorial:</p>
+<pre><code>Workstation PC  Control
+</code></pre>
+<p>Address 172.16.0.1  172.16.0.2
+Netmask 24  24
+The Control’s address (172.16.0.2) is called <fci-ip> in the following chapters.</p>
+<p>Hint</p>
+<p>With this network configuration, Desk can be accessed via https://<fci-ip>, although you will see a certificate warning in your browser.</p>
+<p>The configuration process consists of two steps:</p>
+<p>Configuring Control’s network settings.
+Configuring your workstation’s network settings.
+Control network configuration
+For this step, the robot needs to be installed and tested. Please read through the documents shipped with your robot and follow the setup instructions before continuing any further!</p>
+<p>The Control’s network can be configured in the administrator’s interface. For the duration of this step you can connect to the robot through the port in the robot’s base. For details, consult the Connecting a user interface device section in the manual delivered with your robot.</p>
+<p>_images/accessing-admin.png
+Accessing the administrator’s interface through Desk.</p>
+<p>To set up a static address, enter the following values in the Network section:</p>
+<p>_images/control-static-ip.png
+Setting a static IP for the Control’s LAN port (Shop Floor network). DHCP Client option is deselected.</p>
+<p>Press Apply. After the settings are successfully applied, connect your workstation’s LAN port to the robot’s control unit.</p>
+<p>Linux workstation network configuration
+This section describes how to set up a static IP address on Ubuntu 16.04 using the GUI. Follow the official Ubuntu guide if you prefer to use the command line.</p>
+<p>Caution</p>
+<p>The following steps will modify your network settings. If in doubt, contact your network’s administrator.</p>
+<p>First, go to Network Connection widget. Select the wired connection you will be using and click edit.</p>
+<p>_images/edit-connections.png
+Edit the connection in the Ethernet section.</p>
+<p>Next, click on the IPv4 settings tab, set the method to Manual, and enter the following values:</p>
+<p>_images/static-ip-ubuntu.png
+Setting a static IP for the Workstation PC. Method is set to Manual.</p>
+<p>Hint</p>
+<p>This step will disable DHCP, which means you will no longer obtain an address when connecting to a DHCP server, like the one in Arm’s base. When you no longer use FCI, you can change the Method back to Automatic (DHCP).</p>
+<p>Save the changes, and close the Network Connection window. Click on the connection name from the drop down menu. It should now be possible to connect to the robot from your workstation. To verify this, perform the Network bandwidth, delay and jitter test. From now on, you can also access Desk through this address in your browser.</p>
+<p>Windows workstation network configuration
+Setup a static IP address on the Windows workstation. Therefore, open Control Panel and go to Network and Internet &gt; Network and Sharing Center &gt; Change adapter settings. Right-click the network adapter and open Properties. Use the same example address and netmask as in the Linux workstation network configuration.</p>
+<p>Verifying the connection
+The previous section described how to specify the IP address of the Control’s LAN port. In the following sections that address is referred to as <fci-ip>.</p>
+<p>In order to verify that everything is correctly set up, run the echo_robot_state example from libfranka. If you decided to install franka_ros and libfranka from the ROS repository, you can instead read the instructions for visualizing the robot in ros .</p>
+<p>Change to the build directory of libfranka and execute the example:</p>
+<p>Linux:</p>
+<p>./examples/echo_robot_state <fci-ip>
+Windows:</p>
+<p>cd /path/to/libfranka/build/examples/
+echo_robot_state.exe <fci-ip>
+Hint</p>
+<p>Before executing libfranka programms, make sure that the executables are able to find their runtime libraries. On Windows, the easiest way is to copy the needed libraries into the same directory as the executable.</p>
+<p>The program will print the current state of the robot to the console and terminate after a few iterations. The fields are explained in the libfranka API documentation.</p>
+<p>Example output:</p>
+<p>Hint</p>
+<p>If an error occurs at this point, perform the ping test and ensure that the robot’s fail-safe safety locking system is opened. Further information are provided in the manual shipped with the robot.</p>
               
             </div>
           </div>
