@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Evaluation - DE3- TBD</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Evaluation";
+    var mkdocs_page_input_path = "evaluation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> DE3- TBD</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../intro/">Getting Started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../projectproposal/">Project Proposal</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../projectdevelopment/">Project Development</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Evaluation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#error-detection">Error Detection</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">DE3- TBD</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Evaluation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="outcomes">Outcomes</h2>
+<hr />
+<h4 id="error-detection">Error Detection</h4>
+<hr />
+<p>The chances of error were significantly mitigated by ensuring the motion plan to only be within the workspace of the robot, therefore reducing chances of motion planning error due to collision or being out of the task space. However, error detection and recovery could have been built into the code by using Frankx, which is a high-level motion planning library for Franka Emika Panda. Frankx is a python wrapper for Libfranka (which only works in C++), using Reflexes as a trajectory generator, Eigen for transformation calculations and <code>pybind11</code> for Python bindings. Once installed, the command <code>robot.recover_from_errors()</code> allows the robot to automatically recover from an error by resetting the robot. </p>
+<h2 id="missed-opportunities">Missed Opportunities</h2>
+<p>The following section includes missed opportunities that could have been implemented given a longer project time period.</p>
+<hr />
+<ol>
+<li>Automating Image Capture</li>
+</ol>
+<p>This could have been implemented through designing a custom shutter with a large surface area connected to the camera. The shutter could then be pressed by the robot in-between frames to open and close the aperture before and at the end of the motion. Another option could be to use an infrared sensor which the robot would need to swipe over, this would require less advanced hardware and could prevent damage of the robot due to collision. The robot operating sequence would in turn change with this setup, without the need for a wiggle indication and to shift the priority towards turning the light on and off with the gripper becoming to prevent a streak in each frame. </p>
+<ol>
+<li>Image Compilation</li>
+</ol>
+<p>This was challenging using the hardware available since the images were stored in an SD card. A way for the stop motion animation to be automatically compiled is by using a Raspberry Pi with a camera module. In the code, each image could be appended to a sequence of images and then exported as a video. This would then be able to automatically compile an animation at the end of the robot operating sequence.</p>
+<ol>
+<li>Speed Control</li>
+</ol>
+<p>Speed control could have been implemented. The intensity of light in an image was proportional to the time spent in each position (ie. speed, s); brightness of the torch, bt; and angle of motion relative to the orbiting camera angle, a (varying sinusoidally, from maximum when a = 90 degrees, to minimum when a = 0).Image brightness, B = (k<em> bt + x</em>sin(a)) / s Where k and x are constants. Given the above equation, setting B to a constant and defining the pose and position of the camera would mean that the speed could be calculated to maintain a constant brightness in the light trail. Ultimately, however, the images proved to be aesthetic without this, thus it was considered a redundancy. Picking up the torch was executed by directing the robot arm to the correct position and then allowing the torch to snap on using magnets. This assumes that the resting position and pose of the torch is always the same. An opportunity could have been to include computer vision to locate the current position and pose of the torch and then generate a motion plan to pick up the torch. This would have been a more robust method, however, would drastically increase the complexity of the robot by including image processing. Potentially the image processing could be done using a Raspberry Pi camera (same as the one for frame photography) which could provide data to create a motion plan to pick up the torch.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../projectdevelopment/" class="btn btn-neutral" title="Project Development"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../projectdevelopment/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
