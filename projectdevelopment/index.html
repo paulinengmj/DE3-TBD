@@ -79,6 +79,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#motion-planning">Motion Planning</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#simulation">Simulation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#motion-planning-simulation">Motion Planning Simulation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#light-painting-simulation">Light Painting Simulation</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#light-source">Light Source</a>
         <ul>
@@ -142,7 +148,7 @@
             <div class="section">
               
                 <h2 id="project-development">Project Development</h2>
-<p>HELLO ! This section of the documentation consists of the development from animation creation to image capturing</p>
+<p>This section of the documentation consists of the development from animation creation to image capturing</p>
 <h4 id="method-overview">Method Overview</h4>
 <hr />
 <p>This project was implemented and segmented into 6 main steps</p>
@@ -163,7 +169,8 @@
 <hr />
 <p>The butterfly model was simplified to a low-poly model since it was expected that a large number of frames would be needed to form a smooth animation. I was also intended that the focus was on the animation itself and not on the model. As the project was limited in terms of time with the robot, a simplified outline presented the most opportunity to iterate and increase robotic complexity. I.e. A low fidelity model reduces the amount of time necessary for the robot to complete each frame. </p>
 <p>Using slow-motion footage of butterflies in flight, one model for each frame of the animation was created in <a href="https://www.rhino3d.com/">Rhinoceros 3D</a>.  The animation was simplified to 11 frames. The angles of the butterfly wings about the x-axis and the z-axis are approximately sinusoidal. A subtle body wiggle was also added, which is a small, random rotation of the two body triangles about the y-axis. (Angles in reference to Figure B axes).</p>
-<p><strong><em>NOTE:</em></strong> Grasshopper is a plugin included in Rhino 6, which has built-in functions called “components” to allow for easy data manipulation. </p>
+<p>NOTE: <strong>Note:</strong>
+Grasshopper is a plugin included in Rhino 6, which has built-in functions called “components” to allow for easy data manipulation. </p>
 <p>These are the steps which can be repeated to output the same result for each frame in Grasshopper:</p>
 <ol>
 <li>Each of the 4 triangles which form a butterfly were deconstructed into their vertices, faces, colours and normals using the “deconstruct mesh” components. This outputs as a list of lists; a list of 4 triangles and each triangle having 3 vertices, where each vertex is an xyz coordinate. </li>
@@ -184,11 +191,19 @@
 <p>Harvey</p>
 <h4 id="simulation">Simulation</h4>
 <hr />
-<p>Motion Planning Simulation</p>
-<p>Before real-life implementation of the code on the Panda robot, the entire task was tested using RViz and Gazebo simulations. This allowed for all poses and time functions to be tested without risk of damaging therobot. It also made it easier to collaborate on and iteratively improve the code as it was not necessary for each team member to individually access the physical robot. The Panda model was loaded, spawned and placed into the Gazebo environment, then controlled with the Python code written by the group members.</p>
-<p>Light Painting Simulation</p>
+<h6 id="motion-planning-simulation">Motion Planning Simulation</h6>
+<p>Before real-life implementation of the code on the Panda robot, the entire task was tested using RViz and Gazebo simulations. This allowed for all poses and time functions to be tested without the risk of damaging the actual robot. It also made it easier to collaborate on and iteratively improve the code as it was not necessary for each team member to individually access the physical robot. The Panda model was loaded, spawned and placed into the Gazebo environment, then controlled with the Python code written by the group members.</p>
+<h6 id="light-painting-simulation">Light Painting Simulation</h6>
 <p>By tracing the position of the end effector in RViz, it allowed the path of the attached light-painting module to be recreated in the RViz viewport. This method proved to be much more efficient than camera implementation within Gazebo, which required additional plugins (such as a camera sensor plugin to publish the live image to an image topic and LinkPlot3DPlugin to achieve isolated link tracing) and produced a noisier output due to the shaking exhibited within Gazebo simulations. This effectively generated a digital model of the light painting that the Panda robot would recreate in real life.</p>
-<p>To initialize the light tracing simulation in RViz, go to:Motion Planning&gt;Planned Path&gt;Links&gt;Panda_Hand[<em>]&gt;Show Trail [</em>]Ensure both Panda_Hand[<em>] and Show Trail[</em>] are both ticked.</p>
+<p>To initialize the light tracing simulation in RViz, go to:</p>
+<ol>
+<li>Motion Planning</li>
+<li>Planned Path</li>
+<li>Links</li>
+<li>Check Panda_Hand[_]</li>
+<li>Check Show Trail [_]</li>
+</ol>
+<p><img alt="" src="../handtrail.png" /></p>
 <h4 id="light-source">Light Source</h4>
 <hr />
 <p>A custom light torch was designed and manufactured to comply towards the dimensions of the Franka Emika end effector gripper. The STL file of the light stick can be found <a href="https://imperialcollegelondon.box.com/s/up7vvrtcb66sjumbtdnhm723nokyev2g">here</a> and be FDM printed on 0.2mm layer height at 30% infill. </p>
@@ -221,6 +236,7 @@
 <p><strong><em>NOTE:</em></strong> to change the ‘NAMEOFCODE’ as the name of python file to be executed.</p>
 <h4 id="image-capture">Image Capture</h4>
 <hr />
+<p>To ensure the light painting will be visible, the surrounding lights should be turned off to increase contrast, while using long exposure photography to capture each frame. The ISO was set to 100 to reduce the graininess of images and a small aperture was used to reduce light entering the camera thus, increasing contrast as well as keeping the entire image in focus (by using a deep depth of field). The camera was mounted on a tripod and an external shutter used to reduce shake during images. The camera was set on “Time” mode, this meant that one press of the shutter would open the aperture and another would close the aperture. Since the duration of motion of the robot arm varied with a frame, this was a simple error-proof method. Before taking photos, the camera was focused on the origin of the end-effector using autofocus and then put on manual focus for the rest of the images. Franka Emika would signal to the human operator to press the shutter by wiggling, at the end of the motion for a frame, the end effector would once again wiggle instructing the end of the previous image and the start of a new frame.</p>
               
             </div>
           </div>
