@@ -152,7 +152,6 @@
 </code></pre>
 <p>This error occurs when the coordinates of one of the frames being drawn result in the motion plan calculated being out of the acceptable parameters for the robot to execute. To mitigate this problem first check the coordinates in the frames file to ensure none of them is extremely large or small compared to the others. If not then reduce the value of the variable frameScale in pandaLightPaint to reduce the size of the 3D drawing. This will ensure that all coordinates are easily reachable by the robot and the error will not occur.</p>
 <p>When this error happens you may need to restart RViz as well as the Gazebo simulation. Additionally, remember that the simulated robot is initially set up at a point of singularity so it is advised to manually set joint values to set the robot up in a better starting position.</p>
-<p><img alt="" src="animFrames" /></p>
 <h4 id="troubleshooting-on-the-real-robot">Troubleshooting on the real robot</h4>
 <hr />
 <p>Error in terminal reads  </p>
