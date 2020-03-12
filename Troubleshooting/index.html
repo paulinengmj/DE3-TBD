@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Error Detection - DE3-TBD</title>
+  <title>Troubleshooting - DE3-TBD</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Error Detection";
-    var mkdocs_page_input_path = "error.md";
+    var mkdocs_page_name = "Troubleshooting";
+    var mkdocs_page_input_path = "Troubleshooting.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -57,7 +57,7 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Guide</span></p>
-                <ul>
+                <ul class="current">
                     <li class="toctree-l1"><a class="reference internal" href="../CodeExecutionInSimulation/">Execution in Simulation</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../real/">Execution in Reality</a>
@@ -70,20 +70,22 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../Processing%20Photos/">Processing Photos</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting/">Troubleshooting</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Troubleshooting</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting-in-simulation">Troubleshooting in simulation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting-on-the-real-robot">Troubleshooting on the real robot</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Project Development</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../betatest/">Lo-Fi Development</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../CodeDevelopement/">Code Development</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Error Detection</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#the-following-steps-can-be-followed-to-implement-error-checking">The following steps can be followed to implement error checking</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../error/">Error Detection</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Evaluation</span></p>
@@ -125,11 +127,11 @@
     
       
         
-          <li>Project Development &raquo;</li>
+          <li>Project Guide &raquo;</li>
         
       
     
-    <li>Error Detection</li>
+    <li>Troubleshooting</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -140,37 +142,26 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="implementing-error-checking-for-panda-with-frankx">Implementing error checking for Panda with Frankx</h2>
+                <h2 id="troubleshooting">Troubleshooting</h2>
+<p>There are only 2 issues that may be encountered during normal usage of the butterfly director code. These same errors may be found in both the simulations and when running the code on the real robot. The mitigation steps vary slightly for each of these.
+&nbsp;</p>
+<h4 id="troubleshooting-in-simulation">Troubleshooting in simulation</h4>
 <hr />
-<p>Operating Franka Emika Panda can lead to errors due to your code, motion planning or collision. Fortunately, there are libraries which can be installed to automatically recover from errors, avoiding damage to the robot and allowing the code to rerun following an error.
-This tutorial uses <code>Frankx</code>, which is a python wrapper for <code>libfranka</code> (which runs in C++). The library makes real-time trajectory generation easy, allowing the robot to respond to unforeseen events.</p>
-<h4 id="the-following-steps-can-be-followed-to-implement-error-checking">The following steps can be followed to implement error checking</h4>
-<ol>
-<li>
-<p>Install the following:</p>
-<ul>
-<li><a href="https://github.com/frankaemika/libfranka">libfranka</a></li>
-<li><a href="http://reflexxes.ws/">Reflexxes(trajectory-generator)</a></li>
-<li><a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen (transformation calculations)</a></li>
-<li><a href="https://github.com/pybind/pybind11">pybind11 (Python bindings)</a></li>
-</ul>
-</li>
-</ol>
-<p>&nbsp;
-2.  Install <code>frankx</code> via:</p>
-<pre><code class="python">mkdir -p build
-cd build
-cmake -DReflexxes_ROOT_DIR=../RMLTypeII -DREFLEXXES_TYPE=ReflexxesTypeII -DBUILD_TYPE=Release ..
-make -j4
-make install
+<p>Error in terminal reads</p>
+<pre><code>$ motion plan found but failed during execution
 </code></pre>
-
-<p>&nbsp;
-3.  To recover from errors include the line:</p>
-<pre><code class="python">robot.recover_from_errors()
+<p>This error occurs when the coordinates of one of the frames being drawn result in the motion plan calculated being out of the acceptable parameters for the robot to execute. To mitigate this problem first check the coordinates in the frames file to ensure none of them is extremely large or small compared to the others. If not then reduce the value of the variable frameScale in pandaLightPaint to reduce the size of the 3D drawing. This will ensure that all coordinates are easily reachable by the robot and the error will not occur.</p>
+<p>When this error happens you may need to restart RViz as well as the Gazebo simulation. Additionally, remember that the simulated robot is initially set up at a point of singularity so it is advised to manually set joint values to set the robot up in a better starting position.</p>
+<p><img alt="" src="animFrames" /></p>
+<h4 id="troubleshooting-on-the-real-robot">Troubleshooting on the real robot</h4>
+<hr />
+<p>Error in terminal reads  </p>
+<pre><code>$ motion plan found but failed during execution
 </code></pre>
-
-<p>This allows the robot to automatically recover from errors by resetting the robot.</p>
+<p>or</p>
+<pre><code>$ no motion plan found
+</code></pre>
+<p>This error occurs for the same reason as in the simulation and the same steps should be carries out to fix the issue in code. When this happens the robot will crash meaning that it needs to be reset before executing the code again. To reset the robot ctrl-c all terminal windows on the computer. Unlock the robot then move it to a slightly new position. Lock the robot again and relaunch everything in the terminal. Run the updated code file and observe for any errors.</p>
               
             </div>
           </div>
@@ -178,10 +169,10 @@ make install
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Succesful%20Achievements/" class="btn btn-neutral float-right" title="Succesful Achievements">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../betatest/" class="btn btn-neutral float-right" title="Lo-Fi Development">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../CodeDevelopement/" class="btn btn-neutral" title="Code Development"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Processing%20Photos/" class="btn btn-neutral" title="Processing Photos"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -207,10 +198,10 @@ make install
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../CodeDevelopement/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../Processing%20Photos/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../Succesful%20Achievements/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../betatest/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
