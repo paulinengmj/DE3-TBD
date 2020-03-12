@@ -156,6 +156,22 @@
 <h2 id="summary">Summary</h2>
 <p>Drawing inspiration from light painting images, this project entails programming the Franka Emika robotic arm to draw several still images of a butterfly with light to produce a stop motion animation. The Franka Emika Panda was used as it can move very precisely making it suitable for recreating small details in 3D images.</p>
 <p><img alt="" src="butterfly.JPG" /></p>
+<hr />
+<h2 id="method-overview">Method Overview</h2>
+<p>This project was implemented and segmented into 6 main steps</p>
+<p><img alt="" src="methods.png" /></p>
+<h6 id="1-animation-sequencing">1. Animation Sequencing</h6>
+<p>The model sequence of the butterfly in flight was generated using Rhinoceros3D and the Grasshopper plugin, iteratvely altering a low-poly mesh to give the effect of a butterfly flapping its wings. </p>
+<h6 id="2-coordinate-generation">2. Coordinate Generation</h6>
+<p>The frame sequence was then treated as individual frames, with the coordinates of each one being extracted and processed to eliminate duplicae points. The coordinates were organised to prevent duplicate paths.</p>
+<h6 id="3-motion-planning">3. Motion Planning</h6>
+<p>A motion plan was then generated for each frame using the coordinate list created in the previous step. Code to iterate over the list of frames and plan each motion was developed. This was simulated using RViz and Gazebo.</p>
+<h6 id="4-simulation">4. Simulation</h6>
+<p>Once simulated successfully, the code was implemented using Franka Emika’s Panda robotic arm. </p>
+<h6 id="5-implementation">5. Implementation</h6>
+<p>An end-effector attachment containing a controllable LED was simultaneously developed and manufactured to facilitate light painting</p>
+<h6 id="6-image-capture">6. Image Capture</h6>
+<p>Once the code successfully ran repeatedly on the Panda robot, long-exposure photgraphs were captured of the motion. These photographs were then collated and displayed in sequence to create an animation of a butterfly in flight.</p>
               
             </div>
           </div>
