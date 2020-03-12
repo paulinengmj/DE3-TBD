@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Creating Animation - DE3-TBD</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Creating Animation";
+    var mkdocs_page_input_path = "animationcreation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> DE3-TBD</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../software/">Software</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../hardware/">Hardware</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Project Guide</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../CodeExecutionInSimulation/">Execution in Simulation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../real/">Execution in Reality</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Creating Animation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#butterfly-animation">Butterfly Animation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#general-animation">General Animation</a>
+    </li>
+    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../lightsource/">Panda Torch</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Image/">Capturing Photos</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Processing%20Photos/">Processing Photos</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../Troubleshooting/">Troubleshooting</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Project Development</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../betatest/">Lo-Fi Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../CodeDevelopement/">Code Development</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../error/">Error Detection</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Evaluation</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../Succesful%20Achievements/">Succesful Achievements</a>
+                    </li>
+                    <li class="toctree-l1"><a class="" href="../fail.md">Failed Attempts</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../evaluation/">Future Development</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resource/">Resources</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../vid/">Videos</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">Team</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">DE3-TBD</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Project Guide &raquo;</li>
+        
+      
+    
+    <li>Creating Animation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="animation-creation">Animation Creation</h2>
+<hr />
+<p>The butterfly model was simplified to a low-poly model since it was expected that a large number of frames would be needed to form a smooth animation. I was also intended that the focus was on the animation itself and not on the model. As the project was limited in terms of time with the robot, a simplified outline presented the most opportunity to iterate and increase robotic complexity. Ie. A low fidelity model reduces the amount of time necessary for the robot to complete each frame. </p>
+<p>Using slow-motion footage of butterflies in flight, one model for each frame of the animation was created in <a href="https://www.rhino3d.com/">Rhinoceros 3D</a>.  The animation was simplified to 11 frames. The angles of the butterfly wings about the x-axis and the z-axis are approximately sinusoidal. A subtle body wiggle was also added, which is a small, random rotation of the two body triangles about the y-axis. Angles about axes are shown in <a href="https://imperialcollegelondon.box.com/s/qdrymjcbszoux44az3qeqkwr19efs0dn">this video</a>.</p>
+<pre><code>*NOTE
+Grasshopper is a plugin included in Rhino 6, which has built-in functions called 'components' to allow for easy data manipulation.
+</code></pre>
+<h4 id="butterfly-animation">Butterfly Animation</h4>
+<p>To create your own butterfly animation, follow these steps below:</p>
+<pre><code>1. Open Rhino 6.
+
+2. Draw an equilateral triangle on the XY plane, with one vertex on the origin.
+
+3. With the mirror command, mirror the triangle through the XZ plane to form the butterfly wings.
+
+4. Draw an isosceles triangle on the XZ plane with the vertex corresponding to the smallest angle to the origin.
+
+5. Using the mirror command, mirror the triangle through the XY plane to form the butterfly body.
+
+6. "CTRL +G" to group all four triangles.
+
+7. Copy the group to get 11 instances in total where 1 is for each frame.
+
+8. Isolate each group to it's separate layer by using the 'Change Layer Command'.
+
+9. Rotate the wings about the X and Z axes according to with the reference of a butterfly flight footage incrementally over 11 frames.
+
+10. Open the Grasshopper plugin.
+
+11. Open the stl_file_to_edges_and_coordinates.gh file in Grasshopper.
+
+12. Right-click on the first block in each frame and click 'Set Multiple Meshes'.
+
+13. Select the group in the associated layer. Ie. Layer 1 group for frame 1.
+
+14. Wait for the algorithm to run.
+
+15. Right-click on the last block for each frame and select 'Copy Data Only'.
+
+16. Paste the data in your preferred text editor in the correct frame order.
+
+17. Replace all curly brackets with square brackets.
+
+18. Format the data so that it looks like the list in coordinate_list_about-origin.py
+</code></pre>
+<ul>
+<li>The stl_file_to_edges_and_coordinates.gh file can be found <a href="https://imperialcollegelondon.box.com/s/6u80r0g7vsitpzp55wts49q7c3fufacl">here</a></li>
+<li>The coordinate_list_about-origin.py file can be found <a href="https://imperialcollegelondon.box.com/s/achz2lw7so5wnkm1lnh4fctska04rhh0">here</a></li>
+</ul>
+<p><img alt="" src="../cords.png" /></p>
+<h4 id="general-animation">General Animation</h4>
+<p>These are the general steps which can be repeated to output the same result for each frame in Grasshopper of your animation of choice:</p>
+<pre><code>1. Deconstruct a single image into vertices, faces, colours and normals using the 'deconstruct mesh' components.
+
+2. The output will be a list of a list, where each vertex is in an XYZ coordinate.
+
+3. Remove any repeated centre vertices by putting the lists through the 'create set' component.
+
+4. Extract each sublist using the 'list item' component.
+
+5. Recorded the list for the robot to move from coordinate to coordinate without retracing the same path twice.
+
+*NOTE This is important to avoid any brighter spots in the animation frames which would be seen as an anomaly.
+
+6. The list of coordinates will be in curly brackets, replace them with square brackets.
+</code></pre>
+<p>This general method allows for the flexibility of changing the butterfly animation frame by frame without the need to manually change each coordinate. This would also allow for more complexity to be added easily on the butterfly models (ie. higher poly models), at the cost of longer per-frame drawing time. The Grasshopper definition shown in the figure below is robust enough to deal with having curved lines and would output these as a higher number of interpolated points to form the curves. </p>
+<p><img alt="" src="../figc.JPG" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../lightsource/" class="btn btn-neutral float-right" title="Panda Torch">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../real/" class="btn btn-neutral" title="Execution in Reality"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../real/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../lightsource/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

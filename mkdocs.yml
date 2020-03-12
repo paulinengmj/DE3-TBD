@@ -1,0 +1,30 @@
+site_name: DE3-TBD
+
+nav:
+    - Getting Started:
+        - 'Introduction': 'index.md' #intro to project (copy from first page and write about why we chose panda)
+        - 'Software': 'software.md'
+        - 'Hardware': 'hardware.md'
+    - Project Guide: 
+        - 'Execution in Simulation': 'CodeExecutionInSimulation.md'
+        - 'Execution in Reality': 'real.md'
+        - 'Creating Animation': 'animationcreation.md'
+        - 'Panda Torch': 'lightsource.md'
+        - 'Capturing Photos': 'Image.md'
+        - 'Processing Photos': 'Processing Photos.md'
+        - 'Troubleshooting': 'Troubleshooting.md'
+    - Project Development: 
+        - 'Lo-Fi Development' : 'betatest.md' 
+        - 'Code Development': 'CodeDevelopement.md'
+        - 'Error Detection' : 'error.md'
+    - Evaluation: 
+        - 'Succesful Achievements' : 'Succesful Achievements.md'
+        - 'Failed Attempts' : 'fail.md'
+        - 'Future Development': 'evaluation.md'
+    - About: 
+        - 'Resources' : 'resource.md'
+        - 'Videos' : 'vid.md'
+        - 'Team': 'about.md'
+
+theme: readthedocs
+
