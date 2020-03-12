@@ -148,19 +148,16 @@ This tutorial uses <code>Frankx</code>, which is a python wrapper for <code>libf
 <ol>
 <li>
 <p>Install the following:</p>
-</li>
-<li>
-<p><a href="https://github.com/frankaemika/libfranka">libfranka</a></p>
-</li>
+<ul>
+<li><a href="https://github.com/frankaemika/libfranka">libfranka</a></li>
 <li><a href="http://reflexxes.ws/">Reflexxes(trajectory-generator)</a></li>
 <li><a href="http://eigen.tuxfamily.org/index.php?title=Main_Page">Eigen (transformation calculations)</a></li>
-<li>
-<p><a href="https://github.com/pybind/pybind11">pybind11 (Python bindings)</a></p>
-</li>
-<li>
-<p>Install <code>frankx</code> via:</p>
+<li><a href="https://github.com/pybind/pybind11">pybind11 (Python bindings)</a></li>
+</ul>
 </li>
 </ol>
+<p>&nbsp;
+2.  Install <code>frankx</code> via:</p>
 <pre><code class="python">mkdir -p build
 cd build
 cmake -DReflexxes_ROOT_DIR=../RMLTypeII -DREFLEXXES_TYPE=ReflexxesTypeII -DBUILD_TYPE=Release ..
@@ -168,9 +165,8 @@ make -j4
 make install
 </code></pre>
 
-<ol>
-<li>To recover from errors include the line:</li>
-</ol>
+<p>&nbsp;
+3.  To recover from errors include the line:</p>
 <pre><code class="python">robot.recover_from_errors()
 </code></pre>
 
