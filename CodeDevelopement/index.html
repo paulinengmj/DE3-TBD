@@ -81,6 +81,30 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#code-structure">Code Structure</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#main-code-pandalightpaint">Main Code (pandaLightPaint)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#set-up">Set Up</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#modifiable-variables">Modifiable variables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#main-execution-set-up">Main Execution Set Up</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#main-execution-loop">Main Execution Loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gotopose-function">goToPose Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#shakehand-function">shakeHand Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#goonpath-function">goOnPath Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lighton-function">lightOn Function</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lightoff-function">lightOff Function</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#storing-animation-frames">Storing Animation (frames)</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../error/">Error Detection</a>
@@ -141,14 +165,13 @@
             <div class="section">
               
                 <h2 id="code-development">Code Development</h2>
-<p>This section talks about how the final python code works and why it is set up in this way. The final code is available on GitHub <a href="https://github.com/HarveyU1/LightPaintingRobot">here</a>. </p>
+<p>This section talks about how the final python code works and why it is set up in this way. The final code is available on GitHub at this link https://github.com/HarveyU1/LightPaintingRobot. </p>
 <p>&nbsp;</p>
 <h4 id="code-structure">Code Structure</h4>
 <hr />
 <p>There are two main python files which are used to get the panda robot to light paint.</p>
-<p>-<code>pandaLightPaint</code> is the main python file which is executed from ROS to carry out motion planning for each frame of the animation and then executes this motion plan by moving the end effector and controlling the gripper position.</p>
-<p>-<code>frames</code> is the python file in which the cartesian based trajectory is stored for a complete animation. This is imported by pandaLightPaint and informs the motion plan which is calculated.</p>
-<h2 id="_1"></h2>
+<p>-pandaLightPaint is the main python file which is executed from ROS to carry out motion planning for each frame of the animation and then executes this motion plan by moving the end effector and controlling the gripper position.</p>
+<p>-frames is the python file in which the cartesian based trajectory is stored for a complete animation. This is imported by pandaLightPaint and informs the motion plan which is calculated.</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <h4 id="main-code-pandalightpaint">Main Code (pandaLightPaint)</h4>
